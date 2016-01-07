@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Hitch_My_Ride</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_want_aride">wantARide</string>
+    <string name="title_activity_have_aride">haveARide</string>
+    <string name="title_activity_want_a_ride_locations">Map</string>
+    <string name="title_activity_view_ride">Map</string>
+
+    <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="transition_name">qwerty</string>
+</resources>

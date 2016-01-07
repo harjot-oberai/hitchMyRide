@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="18dp"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:context=".newRide"
+            tools:showIn="@layout/app_bar_want_aride"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <!--<LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:layout_marginTop="-5dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/linearLayout8">
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Name : "
+                    android:id="@+id/textView" />
+
+            </LinearLayout>-->
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="45dp"
+                android:layout_weight="1">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/name_txt11"
+                    android:hint="Name"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+            </android.support.design.widget.TextInputLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:id="@+id/linearLayout9"
+                android:layout_below="@+id/input_layout_name"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true">
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Gender : "
+                    android:id="@+id/textView2" />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="0.5"
+                    android:transitionGroup="true"
+                    android:id="@+id/rbg_gender_x">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Male"
+                        android:id="@+id/rb_male"
+                        android:checked="true" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Female"
+                        android:layout_marginLeft="10dp"
+                        android:id="@+id/rb_female" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:id="@+id/linearLayout10"
+                android:layout_below="@+id/linearLayout9"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Preffered Company : "
+                    android:id="@+id/textView3" />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="0.5"
+                    android:id="@+id/rbg_pref_x">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Male Youth"
+                        android:layout_marginLeft="10dp"
+                        android:id="@+id/rb_male_youth"
+                        android:checked="true" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Female Youth"
+                        android:layout_marginLeft="10dp"
+                        android:id="@+id/rb_female_youth" />
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Senior Citizen"
+                        android:layout_marginLeft="10dp"
+                        android:id="@+id/rb_senior_ctz" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout7"
+                android:layout_below="@+id/linearLayout10"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <!--<TextView
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Age : "
+                    android:textSize="15dp"
+                    android:id="@+id/textView4" />-->
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_age"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:id="@+id/age_txt11"
+                        android:hint="Age"/>
+                </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_contact"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.33">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="phone"
+                        android:ems="10"
+                        android:id="@+id/contact_txt11"
+                        android:hint="Contact"/>
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:orientation="horizontal"
+                android:id="@+id/linearLayout5"
+                android:layout_below="@+id/linearLayout7"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Time"
+                    android:textSize="15dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:text="10:10"
+                    android:id="@+id/time_txt"
+                    android:textSize="20dp"/>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/btn_time"
+                    android:text="Pick"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:orientation="horizontal"
+                android:id="@+id/linearLayout4"
+                android:layout_below="@+id/linearLayout5"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Date"
+                    android:textSize="15dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:text="1/1/2016"
+                    android:id="@+id/date_txt"
+                    android:textSize="20dp"/>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/btn_date"
+                    android:text="Pick"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:orientation="horizontal"
+                android:id="@+id/linearLayout3"
+                android:layout_below="@+id/linearLayout4"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Source"
+                    android:textSize="14dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:text="Pick src .."
+                    android:id="@+id/src_place_txt"
+                    android:textSize="17dp"/>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/src_place_btn"
+                    android:text="Pick"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:orientation="horizontal"
+                android:id="@+id/linearLayout2"
+                android:layout_below="@+id/linearLayout3"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Destination"
+                    android:textSize="14dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:text="Pick dest.."
+                    android:id="@+id/dest_place_txt"
+                    android:textSize="17dp"/>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/dest_place_btn"
+                    android:text="Pick"/>
+            </LinearLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" DONE "
+                android:id="@+id/btn_save_jrny_full"
+                android:background="@color/colorPrimary"
+                android:textColor="#FFFFFF"
+                android:textSize="18dp"
+                android:layout_gravity="center_horizontal"
+                android:transitionName="abcd"
+                android:layout_below="@+id/linearLayout2"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>
+
