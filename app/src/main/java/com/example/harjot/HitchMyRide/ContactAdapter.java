@@ -40,9 +40,11 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
             contactViewHolder.vName.setTextColor(Color.parseColor("#3F51B5"));
         }
         else{
-            contactViewHolder.vName.setTextColor(Color.parseColor("#FF4081"));
+            contactViewHolder.vName.setTextColor(Color.parseColor("#FF4080"));
         }
         contactViewHolder.vPre_Comp.setText(rd.getPref_comp().toString());
+        contactViewHolder.vDate_txt.setText(String.valueOf(rd.getDay()+"/"+rd.getMonth()+"/"+rd.getYear()));
+        contactViewHolder.vTime_txt.setText(String.valueOf(rd.getHour()+":"+rd.getMin()));
     }
 
     @Override
@@ -58,11 +60,15 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         protected TextView vName;
         protected TextView vGender;
         protected TextView vPre_Comp;
+        protected TextView vDate_txt;
+        protected TextView vTime_txt;
         public ContactViewHolder(View vi) {
             super(vi);
             vName= (TextView) vi.findViewById(R.id.txt_name_c);
             vGender=(TextView)vi.findViewById(R.id.txt_gender_c);
             vPre_Comp=(TextView) vi.findViewById(R.id.txt_pref_comp_c);
+            vDate_txt= (TextView) vi.findViewById(R.id.txt_date_c);
+            vTime_txt= (TextView) vi.findViewById(R.id.txt_time_c);
             vi.setOnClickListener(this);
         }
         @Override

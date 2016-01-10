@@ -121,14 +121,14 @@ public class newRide extends AppCompatActivity
         btn_time = (Button) findViewById(R.id.btn_time);
         btn_date = (Button) findViewById(R.id.btn_date);
         year_x=c.get(Calendar.YEAR);
-        month=c.get(Calendar.MONTH);
+        month=c.get(Calendar.MONTH)+1;
         day=c.get(Calendar.DAY_OF_MONTH);
         hour=c.get(Calendar.HOUR_OF_DAY);
         min=c.get(Calendar.MINUTE);
         time_txt= (TextView) findViewById(R.id.time_txt);
         time_txt.setText(String.valueOf(hour+":"+min));
         date_txt= (TextView) findViewById(R.id.date_txt);
-        date_txt.setText(String.valueOf(day+"/"+(month+1)+"/"+year_x));
+        date_txt.setText(String.valueOf(day+"/"+(month)+"/"+year_x));
         btn_fully_done= (Button) findViewById(R.id.btn_save_jrny_full);
         rbg_gender= (RadioGroup) findViewById(R.id.rbg_gender_x);
         rbg_pref= (RadioGroup) findViewById(R.id.rbg_pref_x);
@@ -239,7 +239,7 @@ public class newRide extends AppCompatActivity
 
         @Override
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-            if(year_x==c.get(Calendar.YEAR)&&month==c.get(Calendar.MONTH)&&day==c.get(Calendar.DAY_OF_MONTH)){
+            if(year_x==c.get(Calendar.YEAR)&&month==(c.get(Calendar.MONTH)+1)&&day==c.get(Calendar.DAY_OF_MONTH)){
                 if(hourOfDay>hour){
                     hour = hourOfDay;
                     min = minute;
@@ -265,32 +265,32 @@ public class newRide extends AppCompatActivity
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
             if(year>year_x){
                 year_x = year;
-                month = monthOfYear+1;
+                month = monthOfYear;
                 day = dayOfMonth;
                 date_txt.setText(String.valueOf(day+"/"+(month)+"/"+year_x));
             }
             else if(year==year_x&&monthOfYear>month){
                 year_x = year;
-                month = monthOfYear+1;
+                month = monthOfYear;
                 day = dayOfMonth;
                 date_txt.setText(String.valueOf(day+"/"+(month)+"/"+year_x));
             }
             else if(year==year_x&&monthOfYear==month&&dayOfMonth>day){
                 year_x = year;
-                month = monthOfYear+1;
+                month = monthOfYear;
                 day = dayOfMonth;
                 date_txt.setText(String.valueOf(day+"/"+(month)+"/"+year_x));
             }
             else if(year==year_x&&monthOfYear==month&&dayOfMonth==day){
                 if(hour>c.get(Calendar.HOUR_OF_DAY)){
                     year_x = year;
-                    month = monthOfYear+1;
+                    month = monthOfYear;
                     day = dayOfMonth;
                     date_txt.setText(String.valueOf(day+"/"+(month)+"/"+year_x));
                 }
                 else if(hour==c.get(Calendar.HOUR_OF_DAY)&&min>c.get(Calendar.MINUTE)){
                     year_x = year;
-                    month = monthOfYear+1;
+                    month = monthOfYear;
                     day = dayOfMonth;
                     date_txt.setText(String.valueOf(day+"/"+(month)+"/"+year_x));
                 }
@@ -302,7 +302,7 @@ public class newRide extends AppCompatActivity
             }
             else{
                 Toast.makeText(newRide.this,"Please choose a Valid Date",Toast.LENGTH_SHORT).show();
-                date_txt.setText(String.valueOf(day+"/"+(month+1)+"/"+year_x));
+                date_txt.setText(String.valueOf(day+"/"+(month)+"/"+year_x));
                 showDialog(1);
             }
         }

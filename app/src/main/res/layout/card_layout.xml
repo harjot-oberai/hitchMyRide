@@ -25,28 +25,57 @@
             android:background="#AAA"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="13dp">
+            android:padding="10dp">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Name"
                 android:id="@+id/txt_name_c"
-                android:textSize="20dp"
+                android:textSize="27dp"
                 android:transitionName="qwerty"/>
-            <TextView
+            <LinearLayout
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Gender"
-                android:id="@+id/txt_gender_c"
-                android:textSize="17dp"/>
-            <TextView
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Gender"
+                    android:id="@+id/txt_gender_c"
+                    android:textSize="14dp"/>
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txt_date_c"
+                    android:text="Date"
+                    android:textSize="14dp"
+                    android:layout_gravity="right"/>
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Pref_Comp"
-                android:id="@+id/txt_pref_comp_c"
-                android:textSize="17dp"/>
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pref_Comp"
+                    android:id="@+id/txt_pref_comp_c"
+                    android:textSize="14dp"/>
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txt_time_c"
+                    android:text="Time"
+                    android:textSize="14dp"
+                    android:layout_gravity="right"/>
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
