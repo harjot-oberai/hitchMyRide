@@ -27,8 +27,9 @@ public class RideDetails {
     private String src_name_x;
     private String dest_name_x;
     private String img_path;
-    public RideDetails(int id,String name, String gender, String pref_comp, int age, long contact, int hour, int min, int year, int month, int day, double src_lat, double src_lang, double dest_lat, double dest_long, String src_name_x,String dest_name_x,String img_path) {
-        this.id=id;
+
+    public RideDetails(int id, String name, String gender, String pref_comp, int age, long contact, int hour, int min, int year, int month, int day, double src_lat, double src_lang, double dest_lat, double dest_long, String src_name_x, String dest_name_x, String img_path) {
+        this.id = id;
         this.name = name;
         this.gender = gender;
         this.pref_comp = pref_comp;
@@ -43,9 +44,9 @@ public class RideDetails {
         this.src_long = src_lang;
         this.dest_lat = dest_lat;
         this.dest_long = dest_long;
-        this.src_name_x=src_name_x;
-        this.dest_name_x=dest_name_x;
-        this.img_path=img_path;
+        this.src_name_x = src_name_x;
+        this.dest_name_x = dest_name_x;
+        this.img_path = img_path;
     }
 
     public String getImg_path() {
@@ -196,10 +197,12 @@ public class RideDetails {
 
         return getImg_path() != null && !getImg_path().isEmpty();
     }
+
     public Drawable getThumbnail(Context context) {
 
         return getScaledImage(context, 128, 128);
     }
+
     public Drawable getImage(Context context) {
 
         return getScaledImage(context, 512, 512);

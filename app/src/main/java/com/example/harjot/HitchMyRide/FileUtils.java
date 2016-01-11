@@ -18,12 +18,13 @@ import java.util.Calendar;
  * Created by Harjot on 10-Jan-16.
  */
 public class FileUtils {
-    static Calendar c=Calendar.getInstance();
+    static Calendar c = Calendar.getInstance();
+
     /**
      * Get a bitmap from file and try to resize it to be 300x300 pixels.
      *
-     * @param filepath Path to the image file.
-     * @param reqWidth Requested width.
+     * @param filepath  Path to the image file.
+     * @param reqWidth  Requested width.
      * @param reqHeight Requested height.
      * @return Bitmap of image.
      */
@@ -49,8 +50,8 @@ public class FileUtils {
     /**
      * Calculate an acceptable size based on a requested size.
      *
-     * @param options Bitmap options.
-     * @param reqWidth Requested width.
+     * @param options   Bitmap options.
+     * @param reqWidth  Requested width.
      * @param reqHeight Requested height.
      * @return Sample size based on requested dimensions.
      */
@@ -78,10 +79,12 @@ public class FileUtils {
         // Return sample size.
         return inSampleSize;
     }
-    public static String generateImageName(String s){
-        String str=String.valueOf(s+c.get(Calendar.YEAR)+(c.get(Calendar.MONTH)+1)+c.get(Calendar.DAY_OF_MONTH)+c.get(Calendar.HOUR)+c.get(Calendar.MINUTE)+".jpg");
+
+    public static String generateImageName(String s) {
+        String str = String.valueOf(s + c.get(Calendar.YEAR) + (c.get(Calendar.MONTH) + 1) + c.get(Calendar.DAY_OF_MONTH) + c.get(Calendar.HOUR) + c.get(Calendar.MINUTE) + ".jpg");
         return str;
     }
+
     @TargetApi(Build.VERSION_CODES.KITKAT)
     public static String getPath(final Context context, final Uri uri) {
 
@@ -126,7 +129,7 @@ public class FileUtils {
                 }
 
                 final String selection = "_id=?";
-                final String[] selectionArgs = new String[] {
+                final String[] selectionArgs = new String[]{
                         split[1]
                 };
 
@@ -144,6 +147,7 @@ public class FileUtils {
 
         return null;
     }
+
     /**
      * @param uri The Uri to check.
      * @return Whether the Uri authority is ExternalStorageProvider.
@@ -172,9 +176,9 @@ public class FileUtils {
      * Get the value of the data column for this Uri. This is useful for
      * MediaStore Uris, and other file-based ContentProviders.
      *
-     * @param context The context.
-     * @param uri The Uri to query.
-     * @param selection (Optional) Filter used in the query.
+     * @param context       The context.
+     * @param uri           The Uri to query.
+     * @param selection     (Optional) Filter used in the query.
      * @param selectionArgs (Optional) Selection arguments used in the query.
      * @return The value of the _data column, which is typically a file path.
      */
