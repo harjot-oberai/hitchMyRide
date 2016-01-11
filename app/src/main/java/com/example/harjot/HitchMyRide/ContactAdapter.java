@@ -89,8 +89,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
             //Pair<View,String> p1=Pair.create(view.findViewById(R.id.txt_name_c),"qwerty");
             Pair<View, String> p2 = Pair.create(view.findViewById(R.id.cardView), "qwerty2");
 
-            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(mAct, p2);
-            //Start the Intent
+            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(mAct,p2);
             ActivityCompat.startActivity(mAct, intent, options.toBundle());
             //mAct.startActivity(intent);
 

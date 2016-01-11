@@ -214,7 +214,7 @@ public class newRide extends AppCompatActivity
             // Start activity to choose or take a picture.
             startActivityForResult(chooserIntent, 3);
         } else {
-            name.setError("Please enter customer name");
+            name.setError("Please enter your name");
         }
     }
 

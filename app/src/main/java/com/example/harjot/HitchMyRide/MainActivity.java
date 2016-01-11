@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Toast.makeText(getBaseContext(), String.valueOf(10), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getBaseContext(), String.valueOf(10), Toast.LENGTH_SHORT).show();
         int currentapiVersion = android.os.Build.VERSION.SDK_INT;
         if (currentapiVersion >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             setUpAnimation();
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity
         if (sets != null) {
             num = sets.getInt("num", num);
         }
-        Toast.makeText(getBaseContext(), String.valueOf(30), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getBaseContext(), String.valueOf(30), Toast.LENGTH_SHORT).show();
         setContentView(R.layout.activity_main);
         btn1 = (Button) findViewById(R.id.button);
         btn2 = (Button) findViewById(R.id.button2);
