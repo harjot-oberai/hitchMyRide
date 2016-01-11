@@ -4,9 +4,17 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Parcelable;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -20,6 +28,7 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -32,7 +41,10 @@ import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class newRide extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -72,6 +84,11 @@ public class newRide extends AppCompatActivity
     DataBaseHandler data_base;
     String src_name_x;
     String dest_name_x;
+    String img_path="none";
+    ImageButton mProfileImageButton;
+    Uri mCapturedImageURI;
+
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode==0&&resultCode== Activity.RESULT_OK){
@@ -92,7 +109,115 @@ public class newRide extends AppCompatActivity
             dest_long_x=ll1.longitude;
             dest_name_x=place.getName().toString();
         }
+        if (requestCode==3&&resultCode==Activity.RESULT_OK){
+            // Get the resultant image's URI.
+            final Uri selectedImageUri = (data == null) ? mCapturedImageURI : data.getData();
+
+            // Ensure the image exists.
+            if (selectedImageUri != null) {
+
+                // Add image to gallery if this is an image captured with the camera
+                //Otherwise no need to re-add to the gallery if the image already exists
+                if (requestCode == 3) {
+                    final Intent mediaScanIntent =
+                            new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                    mediaScanIntent.setData(selectedImageUri);
+                    newRide.this.sendBroadcast(mediaScanIntent);
+                }
+
+                img_path = String.valueOf(FileUtils.getPath(newRide.this, selectedImageUri));
+                //Toast.makeText(this,img_path,Toast.LENGTH_SHORT).show();
+
+                // Update client's picture
+                if (img_path != null && !img_path.isEmpty()) {
+                    mProfileImageButton.setImageDrawable(new BitmapDrawable(getResources(),
+                            FileUtils.getResizedBitmap(img_path, 512, 512)));
+                }
+            }
+        }
     }
+
+    private void chooseImage(){
+
+        //We need the customer's name to to save the image file
+        if (name.getText() != null && !name.getText().toString().isEmpty()) {
+            // Determine Uri of camera image to save.
+            final File rootDir = new File(Environment.getExternalStorageDirectory()
+                    + File.separator + "DCIM" + File.separator + "ProfilePicture" + File.separator);
+
+            // Create the destination path if it does not exist.
+            //noinspection ResultOfMethodCallIgnored
+            rootDir.mkdirs();
+
+            // Create the temporary file and get it's URI.
+
+            //Get the customer name
+            String customerName = name.getText().toString();
+
+            //Remove all white space in the customer name
+            customerName.replaceAll("s+", "");
+
+            //Use the customer name to create the file name of the image that will be captured
+            File file = new File(rootDir, FileUtils.generateImageName(customerName));
+            mCapturedImageURI = Uri.fromFile(file);
+
+            // Initialize a list to hold any camera application intents.
+            final List cameraIntents = new ArrayList();
+
+            // Get the default camera capture intent.
+            final Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+            // Get the package manager.
+            final PackageManager packageManager = newRide.this.getPackageManager();
+
+            // Ensure the package manager exists.
+            if (packageManager != null) {
+
+                // Get all available image capture app activities.
+                final List<ResolveInfo> listCam =packageManager.queryIntentActivities(captureIntent, 0);
+
+                // Create camera intents for all image capture app activities.
+                for(ResolveInfo res : listCam) {
+
+                    // Ensure the activity info exists.
+                    if (res.activityInfo != null) {
+
+                        // Get the activity's package name.
+                        final String packageName = res.activityInfo.packageName;
+
+                        // Create a new camera intent based on android's default capture intent.
+                        final Intent intent = new Intent(captureIntent);
+
+                        // Set the intent data for the current image capture app.
+                        intent.setComponent(new ComponentName(res.activityInfo.packageName, res.activityInfo.name));
+                        intent.setPackage(packageName);
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT, mCapturedImageURI);
+
+                        // Add the intent to available camera intents.
+                        cameraIntents.add(intent);
+                    }
+                }
+            }
+
+            // Create an intent to get pictures from the filesystem.
+            final Intent galleryIntent = new Intent();
+            galleryIntent.setType("image/*");
+            galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
+
+            // Chooser of filesystem options.
+            final Intent chooserIntent = Intent.createChooser(galleryIntent, "Select Source");
+
+            // Add the camera options.
+            chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS,
+                    cameraIntents.toArray(new Parcelable[cameraIntents.size()]));
+
+            // Start activity to choose or take a picture.
+            startActivityForResult(chooserIntent, 3);
+        } else {
+            name.setError("Please enter customer name");
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,6 +257,15 @@ public class newRide extends AppCompatActivity
         btn_fully_done= (Button) findViewById(R.id.btn_save_jrny_full);
         rbg_gender= (RadioGroup) findViewById(R.id.rbg_gender_x);
         rbg_pref= (RadioGroup) findViewById(R.id.rbg_pref_x);
+        mProfileImageButton= (ImageButton) findViewById(R.id.mProfileImageButton);
+        mProfileImageButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        chooseImage();
+                    }
+                }
+        );
         onTimePickListener();
         onDatePickListener();
         OnClickListener2();
@@ -329,6 +463,10 @@ public class newRide extends AppCompatActivity
             flag=false;
             dest_txt.setTextColor(Color.RED);
         }
+        if(img_path.equals("none")){
+            flag=false;
+            Toast.makeText(this,"Please choose image",Toast.LENGTH_SHORT).show();
+        }
         return flag;
     }
     public void src_placeListener(){
@@ -400,8 +538,14 @@ public class newRide extends AppCompatActivity
                             else{
                                 pref_comp_x="Senior Citizen";
                             }
-                            RideDetails rd=new RideDetails(MainActivity.num,name.getText().toString(),gender_x,pref_comp_x,Integer.parseInt(age.getText().toString()),Long.parseLong(contact.getText().toString()),hour,min,year_x,month,day,src_lat_x,src_long_x,dest_lat_x,dest_long_x,src_name_x,dest_name_x);
-                            data_base.addRide(rd);
+                            RideDetails rd=new RideDetails(MainActivity.num,name.getText().toString(),gender_x,pref_comp_x,Integer.parseInt(age.getText().toString()),Long.parseLong(contact.getText().toString()),hour,min,year_x,month,day,src_lat_x,src_long_x,dest_lat_x,dest_long_x,src_name_x,dest_name_x,img_path);
+                            try{
+                                data_base.addRide(rd);
+                            }
+                            catch(Exception e){
+                                Toast.makeText(newRide.this,e.getMessage().toString(),Toast.LENGTH_SHORT).show();
+                            }
+                            Toast.makeText(newRide.this,img_path,Toast.LENGTH_SHORT).show();
                             Intent intent=new Intent();
                             setResult(Activity.RESULT_OK,intent);
                             finish();

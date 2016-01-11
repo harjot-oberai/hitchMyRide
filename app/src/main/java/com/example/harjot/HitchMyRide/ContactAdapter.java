@@ -3,6 +3,7 @@ package com.example.harjot.HitchMyRide;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.Image;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +47,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         contactViewHolder.vPre_Comp.setText(rd.getPref_comp().toString());
         contactViewHolder.vDate_txt.setText(String.valueOf(rd.getDay()+"/"+rd.getMonth()+"/"+rd.getYear()));
         contactViewHolder.vTime_txt.setText(String.valueOf(rd.getHour()+":"+rd.getMin()));
+        contactViewHolder.vImg.setImageDrawable(rd.getImage(mAct));
     }
 
     @Override
@@ -62,6 +65,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         protected TextView vPre_Comp;
         protected TextView vDate_txt;
         protected TextView vTime_txt;
+        protected ImageView vImg;
         public ContactViewHolder(View vi) {
             super(vi);
             vName= (TextView) vi.findViewById(R.id.txt_name_c);
@@ -69,6 +73,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
             vPre_Comp=(TextView) vi.findViewById(R.id.txt_pref_comp_c);
             vDate_txt= (TextView) vi.findViewById(R.id.txt_date_c);
             vTime_txt= (TextView) vi.findViewById(R.id.txt_time_c);
+            vImg= (ImageView) vi.findViewById(R.id.img_c);
             vi.setOnClickListener(this);
         }
         @Override

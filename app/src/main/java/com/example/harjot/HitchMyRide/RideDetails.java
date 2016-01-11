@@ -1,5 +1,10 @@
 package com.example.harjot.HitchMyRide;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+
 /**
  * Created by Harjot on 30-Dec-15.
  */
@@ -21,7 +26,8 @@ public class RideDetails {
     private double dest_long;
     private String src_name_x;
     private String dest_name_x;
-    public RideDetails(int id,String name, String gender, String pref_comp, int age, long contact, int hour, int min, int year, int month, int day, double src_lat, double src_lang, double dest_lat, double dest_long, String src_name_x,String dest_name_x) {
+    private String img_path;
+    public RideDetails(int id,String name, String gender, String pref_comp, int age, long contact, int hour, int min, int year, int month, int day, double src_lat, double src_lang, double dest_lat, double dest_long, String src_name_x,String dest_name_x,String img_path) {
         this.id=id;
         this.name = name;
         this.gender = gender;
@@ -39,6 +45,15 @@ public class RideDetails {
         this.dest_long = dest_long;
         this.src_name_x=src_name_x;
         this.dest_name_x=dest_name_x;
+        this.img_path=img_path;
+    }
+
+    public String getImg_path() {
+        return img_path;
+    }
+
+    public void setImg_path(String img_path) {
+        this.img_path = img_path;
     }
 
     public String getSrc_name_x() {
@@ -175,5 +190,38 @@ public class RideDetails {
 
     public void setDay(int day) {
         this.day = day;
+    }
+
+    public boolean hasImage() {
+
+        return getImg_path() != null && !getImg_path().isEmpty();
+    }
+    public Drawable getThumbnail(Context context) {
+
+        return getScaledImage(context, 128, 128);
+    }
+    public Drawable getImage(Context context) {
+
+        return getScaledImage(context, 512, 512);
+    }
+
+    private Drawable getScaledImage(Context context, int reqWidth, int reqHeight) {
+
+        // If profile has a Image.
+        if (hasImage()) {
+
+            // Decode the input stream into a bitmap.
+            Bitmap bitmap = FileUtils.getResizedBitmap(getImg_path(), reqWidth, reqHeight);
+
+            // If was successfully created.
+            if (bitmap != null) {
+
+                // Return a drawable representation of the bitmap.
+                return new BitmapDrawable(context.getResources(), bitmap);
+            }
+        }
+
+        // Return the default image drawable.
+        return context.getResources().getDrawable(R.drawable.lift);
     }
 }
