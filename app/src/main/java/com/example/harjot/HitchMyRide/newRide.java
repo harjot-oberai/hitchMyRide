@@ -225,9 +225,7 @@ public class newRide extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-        //Toast.makeText(this, String.valueOf(500), Toast.LENGTH_SHORT).show();
         data_base = new DataBaseHandler(this);
-        // btn= (Button) findViewById(R.id.btn_save_jrny11);
         gps = new GPSTracker(newRide.this);
         if (gps.canGetLocation()) {
             curr_lat = gps.getLatitude();
@@ -539,7 +537,7 @@ public class newRide extends AppCompatActivity
                             } catch (Exception e) {
                                 Toast.makeText(newRide.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
                             }
-                            Toast.makeText(newRide.this, img_path, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(newRide.this, "Details Saved", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent();
                             setResult(Activity.RESULT_OK, intent);
                             finish();
